@@ -1,1 +1,6 @@
 rootProject.name = 'login'
+include 'login-entities'
+include 'login-usecase'
+include 'login-api'
+include 'login-persistence'
+
