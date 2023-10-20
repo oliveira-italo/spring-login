@@ -1,5 +1,6 @@
-package com.example.login.api.controller;
+package com.example.login.controller;
 
+import com.example.login.entities.User;
 import com.example.login.usecase.interactor.UserInteractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> create() {
+        User user = interactor.create(new User("Foo", "foo@bar.email", "password"));
         return ResponseEntity.ok().build();
     }
 

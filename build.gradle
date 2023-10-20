@@ -31,13 +31,6 @@ bootJar {
 	enabled = false
 }
 
-dependencies {
-	implementation project(':login-api')
-	implementation project(':login-entities')
-	implementation project(':login-persistence')
-	implementation project(':login-usecase')
-}
-
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'org.springframework.boot'

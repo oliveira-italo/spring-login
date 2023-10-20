@@ -7,10 +7,8 @@ application {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-
+    implementation project(':login-controller')
     implementation project(':login-entities')
+    implementation project(':login-persistence')
     implementation project(':login-usecase')
 }
