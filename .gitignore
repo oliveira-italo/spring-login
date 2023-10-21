@@ -26,6 +26,7 @@ replay_pid*
 # IntelliJ
 .idea
 out
+.run
 
 # Gradle
 .gradle
@@ -33,3 +34,4 @@ build
 
 # Others
 HELP.md
+**/generated

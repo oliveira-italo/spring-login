@@ -1,0 +1,13 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'com.example.login.api.Application'
+}
+
+dependencies {
+    implementation project(':module-controller')
+    implementation project(':module-persistence')
+    implementation project(':module-domain')
+}
