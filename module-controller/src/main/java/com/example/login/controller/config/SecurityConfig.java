@@ -32,7 +32,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(configurer -> {
                     configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/login")).permitAll();
                     configurer.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/*")).permitAll();
-                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/users")).hasRole(Role.ROLE_ADMIN.name().replace("ROLE_", ""));
+                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/users")).hasRole(Role.ROLE_ADMIN.removePrefix());
+                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.PUT, "/users/**")).hasRole(Role.ROLE_ADMIN.removePrefix());
+                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.DELETE, "/users/**")).hasRole(Role.ROLE_ADMIN.removePrefix());
                     configurer.anyRequest().authenticated();
                 })
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
