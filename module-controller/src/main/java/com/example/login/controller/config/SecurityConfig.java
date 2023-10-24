@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -27,17 +29,27 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.csrf(AbstractHttpConfigurer::disable) // disables csrf attack protection, stateless tokens do it already
+        return httpSecurity
+                .csrf(AbstractHttpConfigurer::disable) // disables csrf attack protection, stateless tokens do it already
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // set the session management as stateless (default for backend APIs)
                 .authorizeHttpRequests(configurer -> {
-                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/login")).permitAll();
-                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/*")).permitAll();
-                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/users")).hasRole(Role.ROLE_ADMIN.removePrefix());
-                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.PUT, "/users/**")).hasRole(Role.ROLE_ADMIN.removePrefix());
-                    configurer.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.DELETE, "/users/**")).hasRole(Role.ROLE_ADMIN.removePrefix());
+
+                    configurer.requestMatchers(
+                            AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/login"),
+                            AntPathRequestMatcher.antMatcher("/h2-console/*")
+                    ).permitAll();
+
+                    configurer.requestMatchers(
+                            AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/users"),
+                            AntPathRequestMatcher.antMatcher(HttpMethod.PUT, "/users/**"),
+                            AntPathRequestMatcher.antMatcher(HttpMethod.DELETE, "/users/**")
+                    ).hasRole(Role.ROLE_ADMIN.removePrefix());
+
                     configurer.anyRequest().authenticated();
+
                 })
                 .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(customizer -> customizer.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .build();
     }
 
