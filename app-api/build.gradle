@@ -7,6 +7,8 @@ application {
 }
 
 dependencies {
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     implementation project(':module-controller')
     implementation project(':module-persistence')
     implementation project(':module-domain')

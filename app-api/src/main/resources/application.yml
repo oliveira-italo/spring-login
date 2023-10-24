@@ -1,6 +1,4 @@
 server:
     shutdown: graceful
-management:
-    endppoint:
-        shutdown:
-            enabled: true
+    error:
+        include-stacktrace: on_param

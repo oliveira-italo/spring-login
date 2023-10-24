@@ -1,0 +1,7 @@
+management:
+    endppoint:
+        shutdown:
+            enabled: true
+security:
+    token:
+        secret: ${JWT_SECRET:default-secret}

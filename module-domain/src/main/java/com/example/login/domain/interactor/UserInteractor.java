@@ -1,13 +1,11 @@
 package com.example.login.domain.interactor;
 
+import com.example.login.domain.entity.Role;
 import com.example.login.domain.entity.User;
 import com.example.login.domain.exception.UserNotFoundException;
 import com.example.login.domain.gateway.UserGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class UserInteractor {
@@ -20,7 +18,7 @@ public class UserInteractor {
     }
 
     public User update(User user) {
-        return gateway.update(user).orElseThrow(() -> new UserNotFoundException(user.uuid()));
+        return gateway.update(user).orElseThrow(() -> new UserNotFoundException(user.getUuid()));
     }
 
     public User read(String uuid) {
@@ -32,5 +30,9 @@ public class UserInteractor {
         if (deletedRecords.compareTo(1L) != 0L) {
             throw new UserNotFoundException(uuid);
         }
+    }
+
+    public User readByEmail(String email) {
+        return gateway.readByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
     }
 }

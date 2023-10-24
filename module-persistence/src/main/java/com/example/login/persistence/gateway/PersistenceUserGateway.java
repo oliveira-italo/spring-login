@@ -37,9 +37,14 @@ public class PersistenceUserGateway implements UserGateway {
     }
 
     @Override
+    public Optional<User> readByEmail(String email) {
+        return repository.findByEmail(email).map(entity -> mapper.toDomain(entity));
+    }
+
+    @Override
     @Transactional
     public Optional<User> update(User user) {
-        return repository.findByUuid(user.uuid())
+        return repository.findByUuid(user.getUuid())
                 .map(entity -> mapper.update(entity, user))
                 .map(updatedEntity -> mapper.toDomain(updatedEntity));
     }

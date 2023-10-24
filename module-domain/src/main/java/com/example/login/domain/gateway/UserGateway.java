@@ -12,4 +12,6 @@ public interface UserGateway {
     Optional<User> read(String uuid);
 
     Long delete(String uuid);
+
+    Optional<User> readByEmail(String email);
 }

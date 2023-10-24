@@ -33,6 +33,10 @@ public class UserEntity {
     @Column(name = "chr_password", nullable = false)
     private String password;
 
+    @Column(name = "crh_role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RoleEntity role;
+
     @PrePersist
     private void prePersist() {
         this.uuid = UUID.randomUUID().toString();
