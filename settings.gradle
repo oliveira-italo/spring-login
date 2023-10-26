@@ -4,3 +4,5 @@ include 'app-api'
 include 'module-domain'
 include 'module-persistence'
 include 'module-controller'
+include 'module-publisher'
+

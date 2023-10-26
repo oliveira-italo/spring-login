@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         scanBasePackages = {
                 "com.example.login.controller",
                 "com.example.login.domain",
-                "com.example.login.persistence"
+                "com.example.login.persistence",
+                "com.example.login.publisher"
         }
 )
 public class Application {

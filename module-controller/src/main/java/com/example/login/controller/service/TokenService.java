@@ -16,7 +16,7 @@ import java.time.ZoneId;
 @Service
 public class TokenService {
 
-    private static final String ISSUER = "login";
+    private static final String ISSUER = "email";
     private static final String UUID_CLAIM = "uuid";
     private static final String ROLE_CLAIM = "role";
     private static final String PASSWORD_CLAIM = "password";

@@ -12,4 +12,5 @@ dependencies {
     implementation project(':module-controller')
     implementation project(':module-persistence')
     implementation project(':module-domain')
+    implementation project(":module-publisher")
 }
