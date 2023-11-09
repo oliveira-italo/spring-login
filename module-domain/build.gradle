@@ -5,3 +5,7 @@ jar {
 bootJar {
     enabled = false
 }
+
+dependencies {
+    implementation project(':module-commons')
+}

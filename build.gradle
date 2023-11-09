@@ -38,7 +38,6 @@ subprojects {
 
 	dependencies {
 		implementation 'org.springframework.boot:spring-boot-starter'
-		implementation 'io.micrometer:micrometer-tracing-bridge-brave'
 		compileOnly 'org.projectlombok:lombok'
 		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 		annotationProcessor 'org.projectlombok:lombok'

@@ -8,12 +8,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 "com.example.login.controller",
                 "com.example.login.domain",
                 "com.example.login.persistence",
-                "com.example.login.publisher"
+                "com.example.login.publisher",
+                "com.example.login.commons"
         }
 )
-public class Application {
+public class ApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(ApiApplication.class, args);
     }
 }

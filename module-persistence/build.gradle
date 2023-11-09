@@ -13,4 +13,5 @@ dependencies {
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
     implementation project(':module-domain')
+    implementation project(':module-commons')
 }

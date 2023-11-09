@@ -3,11 +3,11 @@ plugins {
 }
 
 application {
-    mainClass = 'com.example.login.api.ApiApplication'
+    mainClass = 'com.example.login.messages.ListenerApplication'
 }
 
 dependencies {
-    implementation project(':module-controller')
+    implementation project(':module-consumer')
     implementation project(':module-persistence')
     implementation project(':module-domain')
     implementation project(":module-publisher")

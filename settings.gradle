@@ -1,8 +1,10 @@
 rootProject.name = 'login'
 
 include 'app-api'
+include 'app-listener'
 include 'module-domain'
 include 'module-persistence'
 include 'module-controller'
 include 'module-publisher'
-
+include 'module-commons'
+include 'module-consumer'

@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(configurer -> {
 
                     configurer.requestMatchers(
-                            AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/email"),
+                            AntPathRequestMatcher.antMatcher(HttpMethod.POST, "/login"),
                             AntPathRequestMatcher.antMatcher("/h2-console/*")
                     ).permitAll();
 

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 public record LoginForm(
 
-        @JsonProperty("email")
+        @JsonProperty("username")
         @Email
         @NotEmpty
         String email,
